@@ -1,0 +1,322 @@
+Terminals unused in grammar
+
+    ADJECTIVE
+
+
+Grammar
+
+    0 $accept: S1 $end
+
+    1 S1: S1 S
+    2   | S
+
+    3 S: SS '.'
+    4  | CS '.'
+
+    5 CS: SS CONJ SS
+    6   | CS CONJ SS
+
+    7 SS: NP VP
+    8   | VP
+
+    9 NP: DET NOUN
+   10   | NOUN
+   11   | PRONOUN
+   12   | DET NOUN PP
+
+   13 VP: VERB NP
+   14   | VERB
+   15   | VP PP
+
+   16 PP: Preposition NP
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '.' (46) 3 4
+    error (256)
+    DET (258) 9 12
+    NOUN (259) 9 10 12
+    PRONOUN (260) 11
+    VERB (261) 13 14
+    Preposition (262) 16
+    ADJECTIVE (263)
+    CONJ (264) 5 6
+
+
+Nonterminals, with rules where they appear
+
+    $accept (11)
+        on left: 0
+    S1 (12)
+        on left: 1 2
+        on right: 0 1
+    S (13)
+        on left: 3 4
+        on right: 1 2
+    CS (14)
+        on left: 5 6
+        on right: 4 6
+    SS (15)
+        on left: 7 8
+        on right: 3 5 6
+    NP (16)
+        on left: 9 10 11 12
+        on right: 7 13 16
+    VP (17)
+        on left: 13 14 15
+        on right: 7 8 15
+    PP (18)
+        on left: 16
+        on right: 12 15
+
+
+State 0
+
+    0 $accept: • S1 $end
+
+    DET      shift, and go to state 1
+    NOUN     shift, and go to state 2
+    PRONOUN  shift, and go to state 3
+    VERB     shift, and go to state 4
+
+    S1  go to state 5
+    S   go to state 6
+    CS  go to state 7
+    SS  go to state 8
+    NP  go to state 9
+    VP  go to state 10
+
+
+State 1
+
+    9 NP: DET • NOUN
+   12   | DET • NOUN PP
+
+    NOUN  shift, and go to state 11
+
+
+State 2
+
+   10 NP: NOUN •
+
+    $default  reduce using rule 10 (NP)
+
+
+State 3
+
+   11 NP: PRONOUN •
+
+    $default  reduce using rule 11 (NP)
+
+
+State 4
+
+   13 VP: VERB • NP
+   14   | VERB •
+
+    DET      shift, and go to state 1
+    NOUN     shift, and go to state 2
+    PRONOUN  shift, and go to state 3
+
+    $default  reduce using rule 14 (VP)
+
+    NP  go to state 12
+
+
+State 5
+
+    0 $accept: S1 • $end
+    1 S1: S1 • S
+
+    $end     shift, and go to state 13
+    DET      shift, and go to state 1
+    NOUN     shift, and go to state 2
+    PRONOUN  shift, and go to state 3
+    VERB     shift, and go to state 4
+
+    S   go to state 14
+    CS  go to state 7
+    SS  go to state 8
+    NP  go to state 9
+    VP  go to state 10
+
+
+State 6
+
+    2 S1: S •
+
+    $default  reduce using rule 2 (S1)
+
+
+State 7
+
+    4 S: CS • '.'
+    6 CS: CS • CONJ SS
+
+    CONJ  shift, and go to state 15
+    '.'   shift, and go to state 16
+
+
+State 8
+
+    3 S: SS • '.'
+    5 CS: SS • CONJ SS
+
+    CONJ  shift, and go to state 17
+    '.'   shift, and go to state 18
+
+
+State 9
+
+    7 SS: NP • VP
+
+    VERB  shift, and go to state 4
+
+    VP  go to state 19
+
+
+State 10
+
+    8 SS: VP •
+   15 VP: VP • PP
+
+    Preposition  shift, and go to state 20
+
+    $default  reduce using rule 8 (SS)
+
+    PP  go to state 21
+
+
+State 11
+
+    9 NP: DET NOUN •
+   12   | DET NOUN • PP
+
+    Preposition  shift, and go to state 20
+
+    $default  reduce using rule 9 (NP)
+
+    PP  go to state 22
+
+
+State 12
+
+   13 VP: VERB NP •
+
+    $default  reduce using rule 13 (VP)
+
+
+State 13
+
+    0 $accept: S1 $end •
+
+    $default  accept
+
+
+State 14
+
+    1 S1: S1 S •
+
+    $default  reduce using rule 1 (S1)
+
+
+State 15
+
+    6 CS: CS CONJ • SS
+
+    DET      shift, and go to state 1
+    NOUN     shift, and go to state 2
+    PRONOUN  shift, and go to state 3
+    VERB     shift, and go to state 4
+
+    SS  go to state 23
+    NP  go to state 9
+    VP  go to state 10
+
+
+State 16
+
+    4 S: CS '.' •
+
+    $default  reduce using rule 4 (S)
+
+
+State 17
+
+    5 CS: SS CONJ • SS
+
+    DET      shift, and go to state 1
+    NOUN     shift, and go to state 2
+    PRONOUN  shift, and go to state 3
+    VERB     shift, and go to state 4
+
+    SS  go to state 24
+    NP  go to state 9
+    VP  go to state 10
+
+
+State 18
+
+    3 S: SS '.' •
+
+    $default  reduce using rule 3 (S)
+
+
+State 19
+
+    7 SS: NP VP •
+   15 VP: VP • PP
+
+    Preposition  shift, and go to state 20
+
+    $default  reduce using rule 7 (SS)
+
+    PP  go to state 21
+
+
+State 20
+
+   16 PP: Preposition • NP
+
+    DET      shift, and go to state 1
+    NOUN     shift, and go to state 2
+    PRONOUN  shift, and go to state 3
+
+    NP  go to state 25
+
+
+State 21
+
+   15 VP: VP PP •
+
+    $default  reduce using rule 15 (VP)
+
+
+State 22
+
+   12 NP: DET NOUN PP •
+
+    $default  reduce using rule 12 (NP)
+
+
+State 23
+
+    6 CS: CS CONJ SS •
+
+    $default  reduce using rule 6 (CS)
+
+
+State 24
+
+    5 CS: SS CONJ SS •
+
+    $default  reduce using rule 5 (CS)
+
+
+State 25
+
+   16 PP: Preposition NP •
+
+    $default  reduce using rule 16 (PP)

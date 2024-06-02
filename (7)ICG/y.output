@@ -1,0 +1,362 @@
+Terminals unused in grammar
+
+    UMINUS
+
+
+State 12 conflicts: 5 shift/reduce
+State 19 conflicts: 2 shift/reduce
+State 20 conflicts: 2 shift/reduce
+State 21 conflicts: 2 shift/reduce
+State 22 conflicts: 5 shift/reduce
+State 23 conflicts: 5 shift/reduce
+
+
+Grammar
+
+    0 $accept: S $end
+
+    1 S: S OS
+    2  | OS
+
+    3 OS: AS
+
+    4 AS: id '=' E ';'
+
+    5 E: E '+' E
+    6  | E '-' E
+    7  | E '*' E
+    8  | E '/' E
+    9  | E '^' E
+   10  | '-' E
+   11  | id
+   12  | num
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '*' (42) 7
+    '+' (43) 5
+    '-' (45) 6 10
+    '/' (47) 8
+    ';' (59) 4
+    '=' (61) 4
+    '^' (94) 9
+    error (256)
+    id <p> (258) 4 11
+    num <v> (259) 12
+    UMINUS (260)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (13)
+        on left: 0
+    S (14)
+        on left: 1 2
+        on right: 0 1
+    OS (15)
+        on left: 3
+        on right: 1 2
+    AS (16)
+        on left: 4
+        on right: 3
+    E <v> (17)
+        on left: 5 6 7 8 9 10 11 12
+        on right: 4 5 6 7 8 9 10
+
+
+State 0
+
+    0 $accept: • S $end
+
+    id  shift, and go to state 1
+
+    S   go to state 2
+    OS  go to state 3
+    AS  go to state 4
+
+
+State 1
+
+    4 AS: id • '=' E ';'
+
+    '='  shift, and go to state 5
+
+
+State 2
+
+    0 $accept: S • $end
+    1 S: S • OS
+
+    $end  shift, and go to state 6
+    id    shift, and go to state 1
+
+    OS  go to state 7
+    AS  go to state 4
+
+
+State 3
+
+    2 S: OS •
+
+    $default  reduce using rule 2 (S)
+
+
+State 4
+
+    3 OS: AS •
+
+    $default  reduce using rule 3 (OS)
+
+
+State 5
+
+    4 AS: id '=' • E ';'
+
+    id   shift, and go to state 8
+    num  shift, and go to state 9
+    '-'  shift, and go to state 10
+
+    E  go to state 11
+
+
+State 6
+
+    0 $accept: S $end •
+
+    $default  accept
+
+
+State 7
+
+    1 S: S OS •
+
+    $default  reduce using rule 1 (S)
+
+
+State 8
+
+   11 E: id •
+
+    $default  reduce using rule 11 (E)
+
+
+State 9
+
+   12 E: num •
+
+    $default  reduce using rule 12 (E)
+
+
+State 10
+
+   10 E: '-' • E
+
+    id   shift, and go to state 8
+    num  shift, and go to state 9
+    '-'  shift, and go to state 10
+
+    E  go to state 12
+
+
+State 11
+
+    4 AS: id '=' E • ';'
+    5 E: E • '+' E
+    6  | E • '-' E
+    7  | E • '*' E
+    8  | E • '/' E
+    9  | E • '^' E
+
+    '*'  shift, and go to state 13
+    '/'  shift, and go to state 14
+    '^'  shift, and go to state 15
+    ';'  shift, and go to state 16
+    '+'  shift, and go to state 17
+    '-'  shift, and go to state 18
+
+
+State 12
+
+    5 E: E • '+' E
+    6  | E • '-' E
+    7  | E • '*' E
+    8  | E • '/' E
+    9  | E • '^' E
+   10  | '-' E •
+
+    '*'  shift, and go to state 13
+    '/'  shift, and go to state 14
+    '^'  shift, and go to state 15
+    '+'  shift, and go to state 17
+    '-'  shift, and go to state 18
+
+    '*'       [reduce using rule 10 (E)]
+    '/'       [reduce using rule 10 (E)]
+    '^'       [reduce using rule 10 (E)]
+    '+'       [reduce using rule 10 (E)]
+    '-'       [reduce using rule 10 (E)]
+    $default  reduce using rule 10 (E)
+
+
+State 13
+
+    7 E: E '*' • E
+
+    id   shift, and go to state 8
+    num  shift, and go to state 9
+    '-'  shift, and go to state 10
+
+    E  go to state 19
+
+
+State 14
+
+    8 E: E '/' • E
+
+    id   shift, and go to state 8
+    num  shift, and go to state 9
+    '-'  shift, and go to state 10
+
+    E  go to state 20
+
+
+State 15
+
+    9 E: E '^' • E
+
+    id   shift, and go to state 8
+    num  shift, and go to state 9
+    '-'  shift, and go to state 10
+
+    E  go to state 21
+
+
+State 16
+
+    4 AS: id '=' E ';' •
+
+    $default  reduce using rule 4 (AS)
+
+
+State 17
+
+    5 E: E '+' • E
+
+    id   shift, and go to state 8
+    num  shift, and go to state 9
+    '-'  shift, and go to state 10
+
+    E  go to state 22
+
+
+State 18
+
+    6 E: E '-' • E
+
+    id   shift, and go to state 8
+    num  shift, and go to state 9
+    '-'  shift, and go to state 10
+
+    E  go to state 23
+
+
+State 19
+
+    5 E: E • '+' E
+    6  | E • '-' E
+    7  | E • '*' E
+    7  | E '*' E •
+    8  | E • '/' E
+    9  | E • '^' E
+
+    '^'  shift, and go to state 15
+    '+'  shift, and go to state 17
+    '-'  shift, and go to state 18
+
+    '+'       [reduce using rule 7 (E)]
+    '-'       [reduce using rule 7 (E)]
+    $default  reduce using rule 7 (E)
+
+
+State 20
+
+    5 E: E • '+' E
+    6  | E • '-' E
+    7  | E • '*' E
+    8  | E • '/' E
+    8  | E '/' E •
+    9  | E • '^' E
+
+    '^'  shift, and go to state 15
+    '+'  shift, and go to state 17
+    '-'  shift, and go to state 18
+
+    '+'       [reduce using rule 8 (E)]
+    '-'       [reduce using rule 8 (E)]
+    $default  reduce using rule 8 (E)
+
+
+State 21
+
+    5 E: E • '+' E
+    6  | E • '-' E
+    7  | E • '*' E
+    8  | E • '/' E
+    9  | E • '^' E
+    9  | E '^' E •
+
+    '^'  shift, and go to state 15
+    '+'  shift, and go to state 17
+    '-'  shift, and go to state 18
+
+    '+'       [reduce using rule 9 (E)]
+    '-'       [reduce using rule 9 (E)]
+    $default  reduce using rule 9 (E)
+
+
+State 22
+
+    5 E: E • '+' E
+    5  | E '+' E •
+    6  | E • '-' E
+    7  | E • '*' E
+    8  | E • '/' E
+    9  | E • '^' E
+
+    '*'  shift, and go to state 13
+    '/'  shift, and go to state 14
+    '^'  shift, and go to state 15
+    '+'  shift, and go to state 17
+    '-'  shift, and go to state 18
+
+    '*'       [reduce using rule 5 (E)]
+    '/'       [reduce using rule 5 (E)]
+    '^'       [reduce using rule 5 (E)]
+    '+'       [reduce using rule 5 (E)]
+    '-'       [reduce using rule 5 (E)]
+    $default  reduce using rule 5 (E)
+
+
+State 23
+
+    5 E: E • '+' E
+    6  | E • '-' E
+    6  | E '-' E •
+    7  | E • '*' E
+    8  | E • '/' E
+    9  | E • '^' E
+
+    '*'  shift, and go to state 13
+    '/'  shift, and go to state 14
+    '^'  shift, and go to state 15
+    '+'  shift, and go to state 17
+    '-'  shift, and go to state 18
+
+    '*'       [reduce using rule 6 (E)]
+    '/'       [reduce using rule 6 (E)]
+    '^'       [reduce using rule 6 (E)]
+    '+'       [reduce using rule 6 (E)]
+    '-'       [reduce using rule 6 (E)]
+    $default  reduce using rule 6 (E)

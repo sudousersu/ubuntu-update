@@ -1,0 +1,5 @@
+no. of lines =4
+no. of tabs=0
+no. of characters = 16
+no. of spaces = 0
+no. of words=4

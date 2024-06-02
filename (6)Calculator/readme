@@ -1,0 +1,5 @@
+command::
+
+1. flex l6.l
+2. yacc -d -v l6.y
+3. gcc lex.yy.c y.tab.c -lm    (for linking math lib)
